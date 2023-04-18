@@ -12,22 +12,72 @@ header {
 
 .myLogo {
   width: 100px;
-  border-radius: 20px;
+  height: 100px;
+  border-radius: 50%;
 }
 
 nav {
   display: flex;
   justify-content: flex-end;
   width: 80%;
-  gap: 30px;
+  gap: 10%;
 }
 
 nav > a {
   text-decoration: none;
   color: black;
+  font-size: 1.5em;
+}
+
+main {
+  padding: 5% 5%;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 200px;
+  justify-content: center;
+}
+
+.cardImg {
+  width: 200px;
+  height: 300px;
+  border-radius: 16px;
+}
+
+.caption {
+  display: flex;
+  border: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentBtn,
+.likeBtn {
+  background: none;
+  box-shadow: 2px 2px black;
+  height: 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.commentBtn:hover {
+  background-color: antiquewhite;
 }
 
 footer {
   border: 2px solid black;
   padding: 0 4%;
 }
+

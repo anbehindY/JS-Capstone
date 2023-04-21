@@ -1,7 +1,9 @@
 import './styles.css';
 import Logo from './logo.png';
 import getShows from './modules/tvMazeApi.js';
-import getLikes from './modules/likes.js';
+import { getLikes, addLike } from './modules/likes.js';
+import displayShowsCounter from './modules/showsCounter.js';
+
 // Add Logo to the header
 const divLogo = document.querySelector('.logo');
 const myLogo = new Image();
@@ -37,6 +39,7 @@ const popup = (array) => {
     comments.textContent = 'Comments';
   });
 };
+
 const cardsContainer = document.querySelector('.card-container');
 const loadShows = async () => {
   const showData = await getShows();
@@ -59,7 +62,15 @@ const loadShows = async () => {
       <button id="${showInfo.id}" class="likeBtn" show-id="${showInfo.id}" type="button">Like</button>
       </div>
   </div>`;
+    const likeBtns = document.querySelectorAll('.likeBtn');
+    likeBtns.forEach((likeBtn) => {
+      likeBtn.addEventListener('click', () => {
+        addLike(Number(likeBtn.getAttribute('show-id')));
+      });
+    });
   });
   popup(showsArray);
 };
+
 loadShows();
+displayShowsCounter();

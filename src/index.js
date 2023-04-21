@@ -1,9 +1,11 @@
 import './styles.css';
 import Logo from './logo.png';
 import getShows from './modules/tvMazeApi.js';
-import { getLikes, addLike } from './modules/likes.js';
+import { getLikes, addLike } from './modules/likeFunctions.js';
+import { getComment, createComment, postComment } from './modules/commentFunctions.js';
 import displayShowsCounter from './modules/showsCounter.js';
-import { baseUrl, involvementAppId } from './modules/involvementApi.js';
+import commentsCounter from './modules/commentsCounter.js';
+
 // Add Logo to the header
 const divLogo = document.querySelector('.logo');
 const myLogo = new Image();
@@ -12,61 +14,7 @@ myLogo.classList.add('myLogo');
 divLogo.append(myLogo);
 let showsArray = [];
 let likesArray = [];
-const commentUrl = `${baseUrl}apps/${involvementAppId}/comments`;
-const commentsList = document.querySelector('.comments-list');
-const comments = document.querySelector('.comments');
-const getComment = async (id) => {
-  try {
-    const response = await fetch(`${commentUrl}?item_id=${id}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-const commentCounter = () => {
-  const length = commentsList.childElementCount;
-  comments.textContent = `Comments (${length})`;
-};
-const createList = (item) => {
-  const comment = document.createElement('li');
-  comment.textContent = `${item.creation_date} ${item.username}: ${item.comment}`;
-  commentsList.appendChild(comment);
-};
-const postComment = () => {
-  const nameInput = document.querySelector('.name-input');
-  const commentInput = document.querySelector('.comment-input');
-  const submitCommentBtn = document.querySelector('.submit-comment-btn');
-  const submitCommentHandler = async (e) => {
-    e.preventDefault();
-    const id = Number(e.target.id);
-    const username = nameInput.value;
-    const comment = commentInput.value;
-    if (username && comment) {
-      const data = { item_id: id, username, comment };
-      fetch(commentUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).then(() => {
-        nameInput.value = '';
-        commentInput.value = '';
-        getComment(id).then((arr) => {
-          commentsList.innerHTML = '';
-          if (arr.length > 0) {
-            arr.forEach((item) => {
-              createList(item);
-              commentCounter();
-            });
-          }
-        });
-      });
-    }
-  };
-  submitCommentBtn.addEventListener('click', submitCommentHandler);
-};
+
 const popup = (array) => {
   const commentBtns = document.querySelectorAll('.commentBtn');
   const commentPopup = document.querySelector('.comment-popup');
@@ -87,11 +35,10 @@ const popup = (array) => {
       genre.textContent = array[index].genres.join(', ');
       movieSummary.innerHTML = array[index].summary;
       getComment(index).then((arr) => {
-        commentsList.innerHTML = '';
         if (arr.length > 0) {
           arr.forEach((item) => {
-            createList(item);
-            commentCounter();
+            createComment(item);
+            commentsCounter();
           });
         }
       });
@@ -103,7 +50,7 @@ const popup = (array) => {
     comments.textContent = 'Comments';
   });
 };
-const cardsContainer = document.querySelector('.card-container');
+
 const loadShows = async () => {
   const showData = await getShows();
   const likeData = await getLikes();
@@ -114,6 +61,7 @@ const loadShows = async () => {
     if (likesArray.find((like) => like.item_id === showInfo.id)) {
       movieLikes = likesArray.find((like) => like.item_id === showInfo.id).likes;
     }
+    const cardsContainer = document.querySelector('.card-container');
     cardsContainer.innerHTML += `<div class="card">
       <img class="cardImg" src="${showInfo.image.original}" alt="${showInfo.name}">
       <div class="caption">
@@ -134,6 +82,7 @@ const loadShows = async () => {
   });
   popup(showsArray);
 };
+
 loadShows();
 postComment();
 displayShowsCounter();

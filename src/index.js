@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import './styles.css';
 import Logo from './logo.png';
 
@@ -8,10 +9,9 @@ myLogo.src = Logo;
 myLogo.classList.add('myLogo');
 divLogo.append(myLogo);
 
-
 const getShows = async () => {
   try {
-    const response = await fetch("https://api.tvmaze.com/shows");
+    const response = await fetch('https://api.tvmaze.com/shows');
     let data = await response.json();
     data = data.slice(5, 11);
     return data;
@@ -20,15 +20,15 @@ const getShows = async () => {
   }
 };
 
-const cardsContainer = document.querySelector(".card-container");
+const cardsContainer = document.querySelector('.card-container');
 let tvShows;
 const loadData = async () => {
   const data = await getShows();
   tvShows = data;
 
   tvShows.forEach((cardInfo) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
+    const card = document.createElement('div');
+    card.classList.add('card');
     card.innerHTML += `<div class="card">
     <img class="cardImg" src="${cardInfo.image.original}" alt="">
     <div class="caption">
@@ -42,22 +42,23 @@ const loadData = async () => {
 </div>`;
     cardsContainer.appendChild(card);
     const commentButton = cardsContainer.querySelector(
-      `#comment_${cardInfo.id}`
+      `#comment_${cardInfo.id}`,
     );
-    commentButton.addEventListener("click", () => displayComent(cardInfo));
+    commentButton.addEventListener('click', () => displayComent(cardInfo));
   });
 };
 
 loadData();
 
 const displayComent = (cardInfo) => {
-  const modal = document.getElementById("commentModal");
-  const modalContent = document.getElementById("commentModalContent");
-  const closeBtn = modal.querySelector(".close");
-  modal.style.display = "block";
+  const modal = document.getElementById('commentModal');
+  const modalContent = document.getElementById('commentModalContent');
+  const closeBtn = modal.querySelector('.close');
+  modal.style.display = 'block';
 
+  // eslint-disable-next-line func-names
   closeBtn.onclick = function () {
-    modal.style.display = "none";
+    modal.style.display = 'none';
   };
   modalContent.innerHTML = `
       <div class="comment-pop-up">
@@ -94,9 +95,10 @@ const displayComent = (cardInfo) => {
         </form>
       </div>`;
 
+  // eslint-disable-next-line func-names
   window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    if (event.target === modal) {
+      modal.style.display = 'none';
     }
   };
 };

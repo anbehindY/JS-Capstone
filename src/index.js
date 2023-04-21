@@ -1,30 +1,24 @@
 /* eslint-disable no-use-before-define */
 import './styles.css';
 import Logo from './logo.png';
+import getShows from './modules/tvMazeApi.js';
+import getLikes from './modules/likes.js';
 
-// Add Logo
+// Add Logo to the header
 const divLogo = document.querySelector('.logo');
 const myLogo = new Image();
 myLogo.src = Logo;
 myLogo.classList.add('myLogo');
 divLogo.append(myLogo);
 
-const getShows = async () => {
-  try {
-    const response = await fetch('https://api.tvmaze.com/shows');
-    let data = await response.json();
-    data = data.slice(5, 11);
-    return data;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
+let showsArray = [];
+let likesArray = [];
 const cardsContainer = document.querySelector('.card-container');
-let tvShows;
-const loadData = async () => {
-  const data = await getShows();
-  tvShows = data;
+const loadShows = async () => {
+  const showData = await getShows();
+  const likeData = await getLikes();
+  showsArray = showData;
+  likesArray = likeData;
 
   tvShows.forEach((cardInfo) => {
     const card = document.createElement('div');
@@ -49,6 +43,8 @@ const loadData = async () => {
 };
 
 loadData();
+
+// Add Comment pop-up
 
 const displayComent = (cardInfo) => {
   const modal = document.getElementById('commentModal');
@@ -102,3 +98,24 @@ const displayComent = (cardInfo) => {
     }
   };
 };
+=======
+  showsArray.forEach((showInfo) => {
+    let movieLikes = 0;
+    if (likesArray.find((like) => like.item_id === showInfo.id)) {
+      movieLikes = likesArray.find((like) => like.item_id === showInfo.id).likes;
+    }
+    cardsContainer.innerHTML += `<div class="card">
+      <img class="cardImg" src="${showInfo.image.original}" alt="${showInfo.name}">
+      <div class="caption">
+          <p class="name">${showInfo.name}</p>
+          <p class="likes" likes-id="${showInfo.id}">${movieLikes} ${movieLikes >= 1 ? 'likes' : 'like'}</p>
+      </div>
+      <div class="btn">
+      <button id="${showInfo.id}" class="commentBtn" type="button">Comment</button>
+      <button id="${showInfo.id}" class="likeBtn" show-id="${showInfo.id}" type="button">Like</button>
+      </div>
+  </div>`;
+  });
+};
+loadShows();
+

@@ -17,9 +17,11 @@ divLogo.append(myLogo);
 const titleLogo = document.getElementById('titleLogo');
 titleLogo.href = Logo;
 
+// Initialize arrays to keep the objects of tv shows and likes
 let showsArray = [];
 let likesArray = [];
 
+// Create an eventlistener for every comment button to display popup with data fetched from API
 const popup = (array) => {
   const commentBtns = document.querySelectorAll('.commentBtn');
   const commentPopup = document.querySelector('.comment-popup');
@@ -56,6 +58,7 @@ const popup = (array) => {
   });
 };
 
+// Display all the tv shows fetched from API to the web page
 const loadShows = async () => {
   const showData = await getShows();
   const likeData = await getLikes();
@@ -78,6 +81,8 @@ const loadShows = async () => {
       <button id="${showInfo.id}" class="likeBtn" show-id="${showInfo.id}" type="button">Like</button>
       </div>
   </div>`;
+
+    // Add an event listener to every like button to update the likes
     const likeBtns = document.querySelectorAll('.likeBtn');
     likeBtns.forEach((likeBtn) => {
       likeBtn.addEventListener('click', () => {

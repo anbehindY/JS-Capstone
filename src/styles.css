@@ -80,3 +80,64 @@ footer {
   border: 2px solid black;
   padding: 0 4%;
 }
+
+.comment-popup {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  background-color: white;
+  border: 2px solid gray;
+  display: none;
+  flex-direction: column;
+  z-index: 100;
+  overflow: auto;
+  padding: 20px 10%;
+}
+
+.close-popup-btn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-weight: 700;
+  font-size: xx-large;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.genre {
+  color: brown;
+  font-size: large;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.popup-photo {
+  width: 50%;
+  height: 70%;
+  align-self: center;
+}
+
+.submit-comment-btn {
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: white;
+  font-weight: 700;
+  color: black;
+  width: 100px;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  padding: 0.5rem;
+  outline: none;
+}

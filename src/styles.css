@@ -2,12 +2,23 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Montseratt', sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 header {
   display: flex;
   height: 10%;
   gap: 100px;
   padding: 3% 10%;
   align-items: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .myLogo {
@@ -25,8 +36,8 @@ nav {
 
 nav > a {
   text-decoration: none;
-  color: black;
   font-size: 1.5em;
+  color: aliceblue;
 }
 
 main {
@@ -36,7 +47,7 @@ main {
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 200px;
+  gap: 100px;
   justify-content: center;
 }
 
@@ -55,7 +66,13 @@ main {
 
 .name {
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.likes {
+  font-weight: 200;
+  font-size: small;
 }
 
 .btn {
@@ -65,20 +82,29 @@ main {
 
 .commentBtn,
 .likeBtn {
-  background: none;
-  box-shadow: 2px 2px black;
+  background: #fff;
+  border: none;
   height: 25px;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
+  color: black;
+  box-shadow: 1px 1px gray;
+  opacity: 0.9;
 }
 
-.commentBtn:hover {
-  background-color: antiquewhite;
+.commentBtn:hover,
+.likeBtn:hover {
+  background-color: #e50914;
+  color: #fff;
+}
+
+.likeBtn:focus {
+  background-color: #e50914;
 }
 
 footer {
-  border: 2px solid black;
   padding: 0 4%;
+  border: 1px solid gray;
 }
 
 .comment-popup {
@@ -93,18 +119,34 @@ footer {
   flex-direction: column;
   z-index: 100;
   overflow: auto;
-  padding: 20px 10%;
+  padding: 20px 8%;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.comment-popup::-webkit-scrollbar {
+  display: none;
 }
 
 .close-popup-btn {
-  position: absolute;
-  top: 0;
-  right: 20px;
+  position: fixed;
+  top: 12%;
+  right: 12%;
   font-weight: 700;
   font-size: xx-large;
   cursor: pointer;
   border: none;
   background-color: transparent;
+  color: #fff;
+}
+
+.showDetails {
+  display: flex;
+  height: 500px;
+}
+
+.description {
+  padding: 10% 0 0 10%;
 }
 
 .genre {
@@ -121,23 +163,25 @@ footer {
 
 .popup-photo {
   width: 50%;
-  height: 70%;
+  height: 80%;
   align-self: center;
 }
 
 .submit-comment-btn {
   padding: 0.5rem;
   border: 1px solid black;
-  border-radius: 15px;
+  border-radius: 5px;
   background-color: white;
   font-weight: 700;
   color: black;
   width: 100px;
   cursor: pointer;
+  opacity: 0.9;
 }
 
 input,
 textarea {
   padding: 0.5rem;
   outline: none;
+  opacity: 0.9;
 }

@@ -12,6 +12,11 @@ const myLogo = new Image();
 myLogo.src = Logo;
 myLogo.classList.add('myLogo');
 divLogo.append(myLogo);
+
+// Add logo to title tab
+const titleLogo = document.getElementById('titleLogo');
+titleLogo.href = Logo;
+
 let showsArray = [];
 let likesArray = [];
 

@@ -42,6 +42,8 @@ const popup = (array) => {
       genre.textContent = array[index].genres.join(', ');
       movieSummary.innerHTML = array[index].summary;
       getComment(index).then((arr) => {
+        const commentsList = document.querySelector('.comments-list');
+        commentsList.innerHTML = '';
         if (arr.length > 0) {
           arr.forEach((item) => {
             createComment(item);

@@ -59,9 +59,9 @@ MooTV is currently a single page website, which uses the TV Maze open api to get
 
 ## 🚀 Live demo <a name="live-demo"></a>
 
-- [Video Presentation]()
+- [Video Presentation](https://drive.google.com/file/d/1-YtxC95Cn8p672IHB-ZiY4i7h8Eai5dS/view?usp=sharing)
 
-- [Live Demo]()
+- [Live Demo](https://anbehindy.github.io/JS-Capstone/dist)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

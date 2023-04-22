@@ -1,0 +1,185 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Montseratt', sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+header {
+  display: flex;
+  height: 10%;
+  gap: 100px;
+  padding: 3% 10%;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.myLogo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  width: 80%;
+  gap: 10%;
+}
+
+nav > a {
+  text-decoration: none;
+  font-size: 1.5em;
+  color: aliceblue;
+}
+
+main {
+  padding: 5% 5%;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: center;
+}
+
+.cardImg {
+  width: 200px;
+  height: 300px;
+  border-radius: 16px;
+}
+
+.caption {
+  display: flex;
+  border: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.likes {
+  font-weight: 200;
+  font-size: small;
+}
+
+.btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentBtn,
+.likeBtn {
+  background: #fff;
+  border: none;
+  height: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
+  box-shadow: 1px 1px gray;
+  opacity: 0.9;
+}
+
+.commentBtn:hover,
+.likeBtn:hover {
+  background-color: #e50914;
+  color: #fff;
+}
+
+.likeBtn:focus {
+  background-color: #e50914;
+}
+
+footer {
+  padding: 0 4%;
+  border: 1px solid gray;
+}
+
+.comment-popup {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  border: 2px solid gray;
+  display: none;
+  flex-direction: column;
+  z-index: 100;
+  overflow: auto;
+  padding: 20px 8%;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.comment-popup::-webkit-scrollbar {
+  display: none;
+}
+
+.close-popup-btn {
+  position: fixed;
+  top: 12%;
+  right: 12%;
+  font-weight: 700;
+  font-size: xx-large;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+
+.showDetails {
+  display: flex;
+  height: 500px;
+}
+
+.description {
+  padding: 10% 0 0 10%;
+}
+
+.genre {
+  color: brown;
+  font-size: large;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.popup-photo {
+  width: 50%;
+  height: 80%;
+  align-self: center;
+}
+
+.submit-comment-btn {
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  font-weight: 700;
+  color: black;
+  width: 100px;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+input,
+textarea {
+  padding: 0.5rem;
+  outline: none;
+  opacity: 0.9;
+}
